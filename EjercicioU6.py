@@ -1,8 +1,3 @@
-
-"""Crea la DB, crea la tabla, pero no almacena los datos en la tabla. No se porque no toma los datos desde los campos del widget con el .get"""
-
-
-
 from tkinter import *
 import sqlite3
 from sqlite3 import Error
@@ -17,8 +12,8 @@ Titulo = Label(root, text="Titulo")
 Titulo.grid(row=1, column=0, sticky=W)
 Ruta = Label(root, text="Ruta")
 Ruta.grid(row=2, column=0, sticky=W)
-Descripción = Label(root, text="Descripción")
-Descripción.grid(row=3, column=0, sticky=W)
+Descripcion = Label(root, text="Descripción")
+Descripcion.grid(row=3, column=0, sticky=W)
 
 campo1= StringVar()
 campo2= StringVar()
@@ -34,6 +29,12 @@ b1 = Muestra(campo1, 1, 1)
 c2 = Muestra(campo2, 2, 1)
 d3 = Muestra(campo3, 3, 1)    
 	
+         
+        
+
+
+
+
 colores =      ['snow', 'old lace', 'linen', 'antique white', 'papaya whip', 'blanched almond',
                'bisque', 'peach puff','navajo white', 'alice blue', 'lavender', 'lavender blush', 'misty rose', 'dark slate gray', 'dimgray', 'slate gray',
                'light slate gray', 'gray', 'light grey', 'midnight blue', 'navy', 'cornflower blue', 'dark slate blue',
@@ -67,8 +68,8 @@ def limpiar():
     d3.delete(0, END)   
     
 def alta():
-        if ((campo1.get() == "") and (campo2.get() == "") and (campo3.get() == "")):error()
-        else:
+	if ((campo1.get() == "") and (campo2.get() == "") and (campo3.get() == "")):error()
+	else:
                 diccionario = dict(Titulo= campo1.get(),Ruta= campo2.get(),Descripcion= campo3.get())
                 global Lista
                 Lista.append(diccionario)
@@ -78,10 +79,12 @@ def alta():
                         print(x)
                 limpiar()
 
-def creabase():
+
+
+def creadb():
 
     try:
-        con = sqlite3.connect('baseprueba1.db')
+        con = sqlite3.connect("baseprueba1.db")
         print("Base creada")
     except Error:
         print(Error)
@@ -89,12 +92,11 @@ def creabase():
         con.close()
 
 
-con= sqlite3.connect('baseprueba1.db')
-c= con.cursor()
 
-def conectar():
+
+def coneccion():
     try:
-        con = sqlite3.connect('baseprueba1')
+        con = sqlite3.connect("baseprueba1")
         return con
     except Error:
 
@@ -108,22 +110,20 @@ def creartabla(con):
         con.commit()
     except:
         pass
-con = conectar()
+con = coneccion()
 
 creartabla(con)  
 
 
 
-def guardaentabla (table):
-	
-	sqlite3= "INSERT INTO baseprueba1 (titulo, ruta, descripcion) VALUES (?, ?, ?)"
-	data = (campo1.get(),campo2.get(),campo3.get())
-	c.execute(sqlite3, data)
-	con.commit()
-	print(c.rowcount) 
-table = sqlite3.connect('baseprueba1')
+def ingresaenDB ():
+    sqlite3= "INSERT INTO producto (titulo, ruta, descripcion) VALUES (?, ?, ?)"
+    data = (campo1('titulo'),campo2('ruta'),campo3('desscripcion'))
+    c.execute(sqlite3, data)
+    con.commit()
 
-b2= Button(root, text="Crear DB", command=creabase)
+
+b2= Button(root, text="Crear DB", command=creadb)
 b2.grid(row=4, column=0)
 
 a2= Button(root, text= "Alta", command= alta)
