@@ -1,3 +1,8 @@
+
+"""Crea la DB, crea la tabla, pero no almacena los datos en la tabla. No se porque no toma los datos desde los campos del widget con el .get"""
+
+
+
 from tkinter import *
 import sqlite3
 from sqlite3 import Error
@@ -29,12 +34,6 @@ b1 = Muestra(campo1, 1, 1)
 c2 = Muestra(campo2, 2, 1)
 d3 = Muestra(campo3, 3, 1)    
 	
-         
-        
-
-
-
-
 colores =      ['snow', 'old lace', 'linen', 'antique white', 'papaya whip', 'blanched almond',
                'bisque', 'peach puff','navajo white', 'alice blue', 'lavender', 'lavender blush', 'misty rose', 'dark slate gray', 'dimgray', 'slate gray',
                'light slate gray', 'gray', 'light grey', 'midnight blue', 'navy', 'cornflower blue', 'dark slate blue',
