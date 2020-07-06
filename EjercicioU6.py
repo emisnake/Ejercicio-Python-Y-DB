@@ -96,7 +96,7 @@ def creadb():
 
 def coneccion():
     try:
-        con = sqlite3.connect("baseprueba1")
+        con = sqlite3.connect("baseprueba1.db")
         return con
     except Error:
 
@@ -117,16 +117,19 @@ creartabla(con)
 
 
 def ingresaenDB ():
-    sqlite3= "INSERT INTO producto (titulo, ruta, descripcion) VALUES (?, ?, ?)"
-    data = (campo1('titulo'),campo2('ruta'),campo3('desscripcion'))
-    c.execute(sqlite3, data)
-    con.commit()
+	con = coneccion()
+	cursorObj = con.cursor()
+	sqlite3= "INSERT INTO producto (titulo, ruta, descripcion) VALUES (?, ?, ?)"
+	data = b1.get(),c2.get(),d3.get()
+	cursorObj.execute(sqlite3, data)
+	con.commit()
+	limpiar()
 
 
 b2= Button(root, text="Crear DB", command=creadb)
 b2.grid(row=4, column=0)
 
-a2= Button(root, text= "Alta", command= alta)
+a2= Button(root, text= "Alta", command= ingresaenDB)
 a2.grid(row=4, column=1)
 
 
